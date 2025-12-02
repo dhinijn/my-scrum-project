@@ -1,0 +1,111 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class AuthController extends Controller
+{
+    // FREE: halaman public
+    public function __construct()
+    {
+        $this->middleware('guest')->except(['logout']);
+    }
+
+    // ======================
+    //  VIEW SELECTOR
+    // ======================
+
+    public function chooseRole()
+    {
+        return view('auth.choose-role');
+    }
+
+    // LOGIN VIEW
+    public function loginAdmin()
+    {
+        return view('auth.login-admin');
+    }
+
+    public function loginUser()
+    {
+        return view('auth.login-user');
+    }
+
+    // REGISTER VIEW
+    public function registerAdmin()
+    {
+        return view('auth.register-admin');
+    }
+
+    public function registerUser()
+    {
+        return view('auth.register-user');
+    }
+
+    // ======================
+    //  PROCESS REGISTER
+    // ======================
+
+    public function handleRegister(Request $request)
+    {
+        $validated = $request->validate([
+            'name'      => 'required|string|max:255',
+            'email'     => 'required|email|unique:users,email',
+            'password'  => 'required|min:7|confirmed',
+            'role'      => 'required|in:admin,user', // ROLE WAJIB DARI FORM
+        ]);
+
+        $user = User::create([
+            'name'      => $validated['name'],
+            'email'     => $validated['email'],
+            'role'      => $validated['role'],  // role dari form
+            'password'  => Hash::make($validated['password']),
+        ]);
+
+        return redirect()->route('login')->with('success', 'Akun berhasil dibuat. Silakan login.');
+    }
+
+    // ======================
+    //  PROCESS LOGIN
+    // ======================
+
+    public function handleLogin(Request $request)
+    {
+        $credentials = $request->validate([
+            'email'     => 'required|email',
+            'password'  => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            // redirect by role
+            if (Auth::user()->role === 'admin') {
+                return redirect('/admin/user');
+            }
+
+            return redirect('/homepage');
+        }
+
+        return back()->withErrors([
+            'login_error' => 'Email atau password salah!',
+        ])->withInput();
+    }
+
+    // ======================
+    //  LOGOUT
+    // ======================
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login')->with('success', 'Berhasil logout.');
+    }
+}
