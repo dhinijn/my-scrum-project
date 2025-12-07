@@ -79,3 +79,34 @@ Route::prefix('/admin')->middleware(['auth', 'role:admin'])->group(function () {
     Route::delete('/barang/delete/{barang}', [BarangController::class, 'delete'])->name('barang.delete');
 
 });
+
+/*
+|--------------------------------------------------------------------------
+| PUBLIC MENU & BOOKING
+|--------------------------------------------------------------------------
+*/
+Route::get('/menu', [HomepageController::class, 'product'])->name('menu');
+
+// halaman form utama book a table
+Route::get('/book', function () {
+    return view('user.book');              // resources/views/user/book.blade.php
+})->name('book');
+
+// step 1: Find a Table
+Route::get('/book/detail', function () {
+    return view('user.book-detail');       // resources/views/user/book-detail.blade.php
+})->name('book.detail');
+
+// step 2: Add Your Detail
+Route::get('/book/detail/info', function () {
+    return view('user.book-detail-step2'); // resources/views/user/book-detail-step2.blade.php
+})->name('book.detail.info');
+
+// step 3: Booking Confirmed
+Route::get('/book/confirmed', function () {
+    return view('user.book-confirmed');    // resources/views/user/book-confirmed.blade.php
+})->name('book.confirmed');
+
+
+
+

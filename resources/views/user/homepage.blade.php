@@ -8,156 +8,166 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
 
-    {{-- Font --}}
+    <!-- Font -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-        * {
-            font-family: "Montserrat", sans-serif;
-        }
-        .overlay {
-            background: rgba(0, 0, 0, 0.45);
-        }
+        * { font-family: "Montserrat", sans-serif; }
     </style>
 
-    {{-- Icons --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
 
 <body class="bg-[#EDE0D4]">
 
-    {{-- ======================= HEADER (NAVBAR + HERO JADI SATU) ======================= --}}
-    <header class="relative w-full h-[520px] bg-cover bg-center"
-        style="background-image: url('/image/homepage/gambar1.png');">
+    <!-- ================= HEADER ================= -->
+        <header class="relative w-full h-screen bg-cover bg-center overflow-hidden"
+                style="background-image: url('{{ asset('images/homepage/gambar1.png') }}');">
 
-        {{-- Overlay gelap --}}
-        <div class="absolute inset-0 overlay"></div>
 
-        {{-- NAVBAR transparan di atas gambar --}}
-        <nav class="absolute top-0 left-0 w-full px-10 py-5 flex items-center justify-between z-20">
+        <div class="absolute inset-0 bg-black/40"></div>
 
-            {{-- Logo --}}
-            <div class="text-white text-xl font-bold tracking-wide">
-                Joglo Lontar Café
+        <!-- NAVBAR -->
+        <nav class="absolute top-5 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl
+                    bg-white/20 backdrop-blur-xl rounded-full px-8 py-4 flex items-center justify-between shadow-md z-20">
+
+            <!-- Logo -->
+            <div class="text-[#F58834] font-bold text-sm tracking-wide uppercase">
+                JOGLO LONTAR CAFE
             </div>
 
-            {{-- Menu tengah --}}
-            <ul class="hidden md:flex gap-8 text-white font-medium">
-                <li><a href="#hero" class="hover:text-yellow-300">Home</a></li>
-                <li><a href="#story" class="hover:text-yellow-300">Learn</a></li>
-                <li><a href="#story" class="hover:text-yellow-300">About Us</a></li>
-                <li><a href="#location" class="hover:text-yellow-300">Location</a></li>
-                <li><a href="#review" class="hover:text-yellow-300">Review</a></li>
-            </ul>
+            <!-- MENU -->
+            <div class="flex items-center justify-center flex-1">
+                <div class="bg-[#4E2C1C] text-white rounded-full px-10 py-3 flex items-center gap-10 text-sm font-semibold">
+                    <a href="/" class="hover:text-yellow-300">HOME</a>
+                    <a href="#learn" class="hover:text-yellow-300">LEARN</a>
+                    <a href="#about" class="hover:text-yellow-300">ABOUT US</a>
+                    <a href="#location" class="hover:text-yellow-300">LOCATION</a>
+                    <a href="#review" class="hover:text-yellow-300">REVIEW</a>
+                </div>
+            </div>
 
-            {{-- Kanan: GET THE APP + icon2 --}}
-            <div class="flex items-center gap-4 text-white">
+            <!-- Right Icons -->
+            <div class="flex items-center gap-6 text-white text-lg">
 
-                <button
-                    class="bg-[#7A3E22] px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#9c5a33] transition">
-                    GET THE APP
-                </button>
-
-                {{-- Search (belum fungsi, nanti bisa diarahkan ke page search) --}}
-                <button class="text-lg hover:text-yellow-300">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-
-                {{-- Login --}}
-                <a href="{{ route('login') }}" class="text-lg hover:text-yellow-300">
-                    <i class="fa-regular fa-user"></i>
+                <a href="{{ route('book') }}">
+                    <button class="bg-[#7A3E22] px-6 py-2 rounded-full text-white font-semibold">BOOK A TABLE</button>
                 </a>
 
-                {{-- Cart / Product --}}
-                <a href="{{ route('product') }}" class="text-lg hover:text-yellow-300">
-                    <i class="fa-solid fa-bag-shopping"></i>
+                <i class="fa-solid fa-magnifying-glass hover:text-yellow-300 cursor-pointer"></i>
+
+                <a href="{{ route('login') }}">
+                    <i class="fa-regular fa-user hover:text-yellow-300 cursor-pointer"></i>
                 </a>
+                    <i class="fa-solid fa-bag-shopping hover:text-yellow-300 cursor-pointer"></i>
             </div>
         </nav>
 
-        {{-- HERO TEXT --}}
-        <div id="hero" class="absolute inset-0 flex flex-col justify-center px-10 z-10 text-white max-w-xl mt-10">
-            <h1 class="text-3xl md:text-4xl font-bold leading-snug">
-                Joglo Concept and Indonesian Heritage
-            </h1>
-            <p class="mt-3 text-sm md:text-base text-gray-200">
-                Traditional Joglo is derived from the word “Tajug Loro”, a pyramid temple roof.
-                Joglo Café provides the best Indonesian meals with a warm atmosphere.
-            </p>
+        <!-- HERO TEXT -->
+        <div class="absolute inset-0 flex items-center pl-12 max-w-xl text-white z-20">
 
-            <div class="mt-5">
-                <button
-                    class="bg-[#7A3E22] px-4 py-2 rounded-md text-sm font-semibold hover:bg-[#9c5a33] transition">
-                    Get In Touch
-                </button>
+            <div>
+                <h1 class="text-3xl md:text-4xl font-bold leading-snug mb-3">
+                    Joglo Concept and Indonesian Heritage
+                </h1>
+
+                <p class="text-sm md:text-base leading-relaxed">
+                    Traditional Joglo, delicious food, every day.<br>
+                    A great place for new friendships.<br>
+                    Get a complimentary traditional snack when your transaction reaches IDR 25k.
+                </p>
+
+                <a href="{{ route('menu') }}">
+                    <button
+                        class="mt-6 bg-[#7A3E22] hover:bg-[#9c5a33]
+                                text-sm md:text-base font-semibold
+                                px-8 py-3 shadow-lg">
+                        OUR MENU
+                    </button>
+                </a>
             </div>
+
         </div>
+
+
     </header>
 
-    {{-- ======================= 3 MENU SECTION ======================= --}}
-    <section class="bg-[#D6C0A4] py-16">
-        <div class="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
 
-            <div>
-                <img src="/images/dinein.png" class="w-28 mx-auto" alt="Dine In">
-                <p class="mt-4 font-semibold tracking-wide">DINE IN</p>
-            </div>
+    <!-- ================= OUR STORY ================= -->
+    <section id="about" class="bg-[#C19D7F] py-20 px-4">
 
-            <div>
-                <img src="/images/reservation.png" class="w-28 mx-auto" alt="Reservation">
-                <p class="mt-4 font-semibold tracking-wide">RESERVATION</p>
-            </div>
-
-            <div>
-                <img src="/images/takeaway.png" class="w-28 mx-auto" alt="Take Away">
-                <p class="mt-4 font-semibold tracking-wide">TAKE AWAY</p>
-            </div>
-
-        </div>
-    </section>
-
-    {{-- ======================= OUR STORY ======================= --}}
-    <section id="story" class="bg-[#C19D7F] py-16">
-        <h2 class="text-center text-xl font-bold tracking-wide text-[#3E2C25]">OUR STORY</h2>
-
-        <div class="max-w-3xl mx-auto mt-6">
-            {{-- nanti bisa diisi teks / gambar video, sekarang placeholder box --}}
-            <div class="bg-[#7B4F3F] h-[240px] rounded-xl"></div>
-        </div>
-    </section>
-
-    {{-- ======================= BEST MENU ======================= --}}
-    <section class="bg-[#F0E0D0] py-20">
-        <h2 class="text-center text-lg font-semibold tracking-wide text-[#3E2C25]">
-            JOGLO IS BEST MENU FOR YEARS
+        <!-- TITLE -->
+        <h2 class="text-center text-4xl font-semibold tracking-[0.3em] text-[#2E1E17] mb-10"
+            style="font-family: 'Poppins', sans-serif;">
+            OUR STORY
         </h2>
 
-        <div class="mt-10 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12">
+        <!-- CONTENT BOX -->
+        <div class="max-w-5xl mx-auto bg-[#6B4333] text-center px-10 py-14
+                    rounded-[40px] shadow-md">
 
-            <div class="flex flex-col items-center">
-                <img src="/images/nasigoreng.jpg" class="w-72 h-52 object-cover rounded-md" alt="Nasi Goreng Joglo">
-                <p class="mt-4 font-semibold text-[#3E2C25]">
-                    Nasi Goreng Joglo + Telur — 25k
-                </p>
-            </div>
-
-            <div class="flex flex-col items-center">
-                <img src="/images/wedanguwuh.jpg" class="w-72 h-52 object-cover rounded-md" alt="Wedang Uwuh">
-                <p class="mt-4 font-semibold text-[#3E2C25]">
-                    Wedang Uwuh — 10k
-                </p>
-            </div>
-
+            <p class="text-lg md:text-xl font-semibold leading-relaxed text-[#1A0E0A]"
+               style="font-family: 'Poppins', sans-serif;">
+                Joglo Lontar Café blends culture, flavor, and comfort in one place.
+                Embracing Indonesian heritage, we offer a warm ambiance and signature dishes
+                crafted with a modern touch. This café is designed as a gathering place
+                for families, friends, and anyone seeking a peaceful moment away from the
+                busyness of daily life.
+            </p>
         </div>
 
-        <div class="text-center mt-10">
-            <button class="bg-[#7A3E22] px-6 py-2 rounded-lg text-white font-semibold hover:bg-[#9c5a33] transition">
-                View More
-            </button>
-        </div>
     </section>
 
-    {{-- ======================= FOOTER ======================= --}}
-    <footer class="bg-[#3E2C25] text-white py-10 px-8 mt-4">
+    <!-- ================= BEST MENU ================= -->
+    <section class="relative py-20 bg-cover bg-center"
+             style="background-image: url('{{ asset('images/homepage/gambar2.png') }}');">
+
+        <!-- DARK OVERLAY BIAR TEKS KEBACA -->
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative z-10">
+
+            <h2 class="text-center text-2xl font-bold tracking-wide text-white drop-shadow-lg">
+                JOGLO IS BEST MENU FOR YEARS
+            </h2>
+
+            <div class="mt-10 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12">
+
+                <div class="flex flex-col items-center">
+                    <img src="{{ asset('images/homepage/nasigoreng.jpg') }}"
+                         class="w-72 h-52 object-cover rounded-md shadow-xl">
+                    <p class="mt-4 font-semibold text-white drop-shadow-md">
+                        Nasi Goreng Joglo + Telur — 25k
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <img src="{{ asset('images/homepage/wedanguwuh.jpg') }}"
+                         class="w-72 h-52 object-cover rounded-md shadow-xl">
+                    <p class="mt-4 font-semibold text-white drop-shadow-md">
+                        Wedang Uwuh — 10k
+                    </p>
+                </div>
+
+            </div>
+
+        <div class="text-center mt-10">
+            <a href="{{ route('menu') }}">
+                <button
+                    class="bg-[#7A3E22] px-6 py-2 rounded-lg text-white font-semibold hover:bg-[#9c5a33] transition">
+                    View More
+                </button>
+            </a>
+        </div>
+
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-[#3E2C25] text-white py-10 px-8 ">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
 
             <div>
@@ -193,5 +203,4 @@
     </footer>
 
 </body>
-
 </html>

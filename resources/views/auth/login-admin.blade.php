@@ -36,17 +36,17 @@
 
     <!-- LEFT SIDE -->
     <div class="relative hidden md:block">
-        <img src="/images/hero-bg.jpg" class="w-full h-full object-cover" />
+        <img src="{{ asset('images/homepage/gambar2.png') }}" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-cafe-700 bg-opacity-40 backdrop-blur-sm"></div>
 
-        <!-- Back Button -->
-        <a href="/" class="absolute top-6 left-6 text-white text-3xl font-bold">&larr;</a>
+        <!-- Back Button: balik ke halaman login (pilih role) -->
+        <a href="{{ url('/login') }}"
+           class="absolute top-6 left-6 text-white text-3xl font-bold z-20">
+            &larr;
+        </a>
 
         <!-- Text -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
-            <p class="text-center text-xl font-semibold">
-                Kelola sistem Joglo Lontar Cafe dengan mudah
-            </p>
             <p class="text-center mt-2 font-medium">Semangat Admin<br>– Minlo imoet</p>
         </div>
     </div>
@@ -57,7 +57,7 @@
 
             <!-- Icon -->
             <div class="flex justify-center mb-4">
-                <img src="/images/admin-icon.png" class="w-14 h-14" />
+                <img src="{{ asset('images/admin-icon.png') }}" class="w-14 h-14" />
             </div>
 
             <h2 class="text-center text-2xl font-bold text-cafe-700">Login Admin</h2>

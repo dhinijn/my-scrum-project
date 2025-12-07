@@ -7,18 +7,35 @@
     <title>Pilih Role Login</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
         * {
             font-family: 'Montserrat', sans-serif;
         }
     </style>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 </head>
 
-<body class="min-h-screen bg-[#F2E8DC] flex items-center justify-center">
+<body class="min-h-screen flex items-center justify-center relative">
 
-    <div class="text-center px-4">
+    <!-- BACKGROUND IMAGE -->
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+         style="background-image: url('{{ asset('images/homepage/gambar2.png') }}');">
+    </div>
+
+    <!-- OVERLAY GELAP -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <!-- TOMBOL BACK KE HOME -->
+    <a href="{{ url('/') }}"
+       class="absolute top-6 left-6 z-20 text-white text-3xl font-bold drop-shadow-md">
+        &larr;
+    </a>
+
+    <!-- CONTENT -->
+    <div class="relative z-10 text-center px-4">
 
         {{-- TEKS ATAS --}}
         <h2 class="text-2xl font-bold text-white drop-shadow-md">
@@ -35,8 +52,8 @@
             {{-- ADMIN --}}
             <a href="{{ route('login.admin') }}"
                class="w-full flex items-center justify-center gap-3
-                      bg-[#6A2D16] hover:bg-[#8b3a1f] text-white
-                      py-3 rounded-[999px] font-semibold text-lg shadow-md transition">
+                      bg-[#6A2D16]/90 hover:bg-[#8b3a1f] text-white
+                      py-3 rounded-[999px] font-semibold text-lg shadow-md transition backdrop-blur-sm">
                 <i class="fa-solid fa-shield-halved text-xl"></i>
                 <span>Admin</span>
             </a>
@@ -44,8 +61,8 @@
             {{-- USER --}}
             <a href="{{ route('login.user') }}"
                class="w-full flex items-center justify-center gap-3
-                      bg-[#6A2D16] hover:bg-[#8b3a1f] text-white
-                      py-3 rounded-[999px] font-semibold text-lg shadow-md transition">
+                      bg-[#6A2D16]/90 hover:bg-[#8b3a1f] text-white
+                      py-3 rounded-[999px] font-semibold text-lg shadow-md transition backdrop-blur-sm">
                 <i class="fa-regular fa-user text-xl"></i>
                 <span>User</span>
             </a>

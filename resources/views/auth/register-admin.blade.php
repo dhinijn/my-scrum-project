@@ -36,11 +36,15 @@
 
     <!-- LEFT SIDE -->
     <div class="relative hidden md:block">
-        <img src="/images/hero-bg.jpg" class="w-full h-full object-cover" />
+        <img src="{{ asset('images/homepage/gambar2.png') }}" class="w-full h-full object-cover" />
         <div class="absolute inset-0 bg-cafe-700 bg-opacity-40 backdrop-blur-sm"></div>
 
-        <!-- Back Button -->
-        <a href="/login/admin" class="absolute top-6 left-6 text-white text-3xl font-bold">&larr;</a>
+        <!-- Back Button: gunakan previous, fallback ke login admin -->
+        <a
+            href="{{ url()->previous() !== url()->current() ? url()->previous() : url('/login/admin') }}"
+            class="absolute top-6 left-6 text-white text-3xl font-bold z-20">
+            &larr;
+        </a>
 
         <!-- Text -->
         <div class="absolute inset-0 flex flex-col justify-center items-center text-white px-6">
@@ -57,7 +61,7 @@
 
             <!-- Icon -->
             <div class="flex justify-center mb-4">
-                <img src="/images/admin-icon.png" class="w-14 h-14" />
+                <img src="{{ asset('images/admin-icon.png') }}" class="w-14 h-14" />
             </div>
 
             <h2 class="text-center text-2xl font-bold text-cafe-700">Register Admin</h2>
@@ -70,26 +74,26 @@
                 <!-- Name -->
                 <label class="text-sm text-gray-700">Name</label>
                 <input type="text" name="name"
-                    class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-4 focus:ring-2 focus:ring-cafe-500"
-                    required />
+                       class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-4 focus:ring-2 focus:ring-cafe-500"
+                       required />
 
                 <!-- Username -->
                 <label class="text-sm text-gray-700">Username</label>
                 <input type="text" name="username"
-                    class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-4 focus:ring-2 focus:ring-cafe-500"
-                    required />
+                       class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-4 focus:ring-2 focus:ring-cafe-500"
+                       required />
 
                 <!-- Password -->
                 <label class="text-sm text-gray-700">Password</label>
                 <input type="password" name="password"
-                    class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-4 focus:ring-2 focus:ring-cafe-500"
-                    required />
+                       class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-4 focus:ring-2 focus:ring-cafe-500"
+                       required />
 
                 <!-- Confirm Password -->
                 <label class="text-sm text-gray-700">Re-Password</label>
                 <input type="password" name="password_confirmation"
-                    class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-6 focus:ring-2 focus:ring-cafe-500"
-                    required />
+                       class="w-full bg-cafe-50 px-4 py-3 rounded-xl border border-cafe-300 mt-1 mb-6 focus:ring-2 focus:ring-cafe-500"
+                       required />
 
                 <!-- Button -->
                 <button
